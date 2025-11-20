@@ -7,11 +7,35 @@
     <link rel="stylesheet" href="style.css">
 </head>
 <body>
+    <div class="container">
+        
+    </div>
     
 
     <script>
 
+        // generate 16 rows of divs, stacked vertically
+        // inside each row, create 16 divs, flexed horizontally
+        const container = document.querySelector(".container");
+        for (let i = 0; i < 16; i++) {
+            const row = document.createElement("div");
+            row.className = "vertical";
+            container.appendChild(row);
 
+            for (let j = 0; j < 16; j++) {
+                const column = document.createElement("div");
+                column.className = "horizontal";
+                row.style["border"] = "2px solid black";
+                row.appendChild(column);
+            }
+            
+            
+
+            // for (let i = 0; i < 16; i++) {
+            //     const 
+            // }
+        }
+        
     </script>
 </body>
 </html>

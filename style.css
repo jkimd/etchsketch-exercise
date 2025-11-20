@@ -1,0 +1,12 @@
+.container {
+    display: flex;
+    gap: 15px;
+    justify-content: space-evenly;
+    flex-direction: column;
+}
+
+
+.vertical {
+    display: flex;
+    justify-content: space-evenly;
+}
