@@ -8,9 +8,9 @@
 </head>
 <body>
 
-    <button class="dimension-button">Change Pixel Density</button>
+    <button class="change-button">Change Pixel Density</button>
     <div class="container"></div>
-    
+    <button class="reset-button">Erase Board</button>
 
     <script>
 
@@ -31,25 +31,44 @@
                 container.appendChild(row);
             }
         }
+
+        function deleteGrid() {
+            const containerChildren = document.querySelectorAll(".vertical");
+            for (const child of containerChildren) {
+                child.remove();
+            }
+        }
         
         const container = document.querySelector(".container");
         generateGrid(16);
 
         container.addEventListener("mouseover", (event) => {
             let target = event.target;
-            target.style.backgroundColor = "black";
-            
-        })
 
-        const button = document.querySelector("button");
-        button.addEventListener("click", ()=> {
-            const dim = parseInt(prompt("Enter the number of squares per length (max 100)"));
+            if (!target.dataset.alpha) {
+                target.dataset.alpha = 0;
+            }
+            const nextAlpha = Math.min(1, (parseFloat(target.dataset.alpha || "0") + 0.2));
+            target.dataset.alpha = nextAlpha.toFixed(1);
+            target.style.backgroundColor = `rgba(0, 0, 0, ${nextAlpha})`;
+            })
 
-            const containerChildren = document.querySelectorAll(".vertical");
-            for (const child of containerChildren) {
-                child.remove();
+        let dim = 16;
+        const changeButton = document.querySelector(".change-button");
+        changeButton.addEventListener("click", () => {
+            dim = parseInt(prompt("Enter the number of squares per length (max 100)"));
+            if (dim > 100) {
+                alert("Error! Dimensions cannot be greater than 100x100.");
+                return;
             }
 
+            deleteGrid();
+            generateGrid(dim);
+        })
+
+        const resetButton = document.querySelector(".reset-button");
+        resetButton.addEventListener("click", () => {
+            deleteGrid();
             generateGrid(dim);
         })
         

@@ -6,6 +6,7 @@ body {
     width: 960px;
     height: 960px;
     margin: auto;
+    margin-block: 15px;
     display: flex;
     flex-direction: column;
 }
@@ -17,8 +18,4 @@ body {
 
 .horizontal {
     flex: 1;
-}
-
-.color {
-    color: black;
 }
