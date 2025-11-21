@@ -7,34 +7,51 @@
     <link rel="stylesheet" href="style.css">
 </head>
 <body>
-    <div class="container">
-        
-    </div>
+
+    <button class="dimension-button">Change Pixel Density</button>
+    <div class="container"></div>
     
 
     <script>
 
-        // generate 16 rows of divs, stacked vertically
-        // inside each row, create 16 divs, flexed horizontally
-        const container = document.querySelector(".container");
-        for (let i = 0; i < 16; i++) {
-            const row = document.createElement("div");
-            row.className = "vertical";
-            container.appendChild(row);
+        function generateGrid(dim) { 
+            // generate 16 rows of divs, flexed vertically
+            // inside each row, create 16 divs, flexed horizontally
+            for (let i = 0; i < dim; i++) {
+                const row = document.createElement("div");
+                row.className = "vertical";
 
-            for (let j = 0; j < 16; j++) {
-                const column = document.createElement("div");
-                column.className = "horizontal";
-                row.style["border"] = "2px solid black";
-                row.appendChild(column);
+                for (let j = 0; j < dim; j++) {
+                    const column = document.createElement("div");
+                    column.className = "horizontal";
+                    column.style["border"] = "1px solid black";
+                    row.appendChild(column);
+                }
+
+                container.appendChild(row);
             }
-            
-            
-
-            // for (let i = 0; i < 16; i++) {
-            //     const 
-            // }
         }
+        
+        const container = document.querySelector(".container");
+        generateGrid(16);
+
+        container.addEventListener("mouseover", (event) => {
+            let target = event.target;
+            target.style.backgroundColor = "black";
+            
+        })
+
+        const button = document.querySelector("button");
+        button.addEventListener("click", ()=> {
+            const dim = parseInt(prompt("Enter the number of squares per length (max 100)"));
+
+            const containerChildren = document.querySelectorAll(".vertical");
+            for (const child of containerChildren) {
+                child.remove();
+            }
+
+            generateGrid(dim);
+        })
         
     </script>
 </body>
